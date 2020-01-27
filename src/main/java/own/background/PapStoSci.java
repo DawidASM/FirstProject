@@ -4,13 +4,18 @@ package own.background;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.awt.*;
 
 
 public class PapStoSci extends Application {
+
+    private Image image = new Image("background/tlo.png");
 
     public static void main(String[]args){
         launch(args);
@@ -21,18 +26,22 @@ public class PapStoSci extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Group root = new Group();
+        BackgroundSize backgroundSize = new BackgroundSize(100,100,true,true,true,false);
+        BackgroundImage backgroundImage = new BackgroundImage(image, BackgroundRepeat.REPEAT,BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,backgroundSize);
+        Background background = new Background(backgroundImage);
 
-        Scene scene = new Scene(root, 300 ,300, Color.YELLOW);
+        GridPane gridPane = new GridPane();
+        gridPane.setBackground(background);
 
-        Rectangle r = new Rectangle(25,25,250,250);
-        r.setFill(Color.WHITE);
 
-        Rectangle z = new Rectangle(50,50,200,200);
-        z.setFill(Color.BLUE);
 
-        root.getChildren().add(r);
-        root.getChildren().add(z);
+
+
+        Scene scene = new Scene(gridPane, 600 ,400, Color.YELLOW);
+
+
+
+
         primaryStage.setTitle("PaperGame");
         primaryStage.setScene(scene);
         primaryStage.show();
